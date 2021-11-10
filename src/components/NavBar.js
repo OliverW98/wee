@@ -1,4 +1,22 @@
-function NavBar() {
+import NavBarButton from "./NavBarButton";
+
+function NavBar(props) {
+  const projectButtons = props.pagesDisplayed.map((page, index) => {
+    if (index === 0) {
+      return null;
+    } else {
+      return (
+        <NavBarButton
+          key={page.name}
+          name={page.name}
+          handleClick={props.handleClick}
+          label={page.label}
+          className={page.className}
+        />
+      );
+    }
+  });
+
   return (
     <nav
       className="navbar is-primary"
@@ -6,50 +24,28 @@ function NavBar() {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <a className="navbar-item" href="https://bulma.io">
+        <div className="navbar-item">
           <img
             src="https://bulma.io/images/bulma-logo-white.png"
+            alt="yeppers"
             width="112"
             height="28"
           />
-        </a>
-
-        <a
-          role="button"
-          className="navbar-burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+        </div>
       </div>
 
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item">Home</a>
-
+          <NavBarButton
+            name={props.pagesDisplayed[0].name}
+            handleClick={props.handleClick}
+            label={props.pagesDisplayed[0].label}
+            className={props.pagesDisplayed[0].className}
+          />
           <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">Project</a>
+            <span className="navbar-link">Project</span>
 
-            <div className="navbar-dropdown">
-              <a className="navbar-item">About</a>
-              <a className="navbar-item">Jobs</a>
-              <a className="navbar-item">Contact</a>
-            </div>
-          </div>
-        </div>
-
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              <a className="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a className="button is-light">Log in</a>
-            </div>
+            <div className="navbar-dropdown">{projectButtons}</div>
           </div>
         </div>
       </div>
