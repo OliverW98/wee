@@ -3,7 +3,7 @@ import TicTacToe from "./tictactoe/TicTacToe";
 import TodoList from "./todolist/TodoList";
 function MainContent(props) {
   return (
-    <div className="container is-max-desktop">
+    <div className="container mt-6 is-max-desktop">
       {props.pagesDisplayed[0].isDisplayed ? <AboutMe /> : null}
 
       {props.pagesDisplayed[1].isDisplayed ? <TodoList /> : null}

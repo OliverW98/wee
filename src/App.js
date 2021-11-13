@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import NavBar from "./components/NavBar";
 import MainContent from "./components/MainContent";
-import Footer from "./components/Footer";
-
 const initialPagesDisplayed = [
   {
     name: "home",
@@ -49,7 +47,6 @@ function App() {
     <div>
       <NavBar pagesDisplayed={pagesDisplayed} handleClick={handleClick} />
       <MainContent pagesDisplayed={pagesDisplayed} />
-      <Footer />
     </div>
   );
 }

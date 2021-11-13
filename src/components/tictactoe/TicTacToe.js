@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import Board from "./Board";
+import HeroSection from "../HeroSection";
+import { useSpring, animated } from "react-spring";
 
 function TicTacToe() {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [xIsNext, setXisNext] = useState(true);
   const winner = calculateWinner(board);
+
+  const props = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
 
   function calculateWinner(squares) {
     const lines = [
@@ -45,13 +52,17 @@ function TicTacToe() {
   };
 
   return (
-    <div>
+    <animated.div style={props}>
+      <HeroSection
+        title="TicTacToe"
+        subtitle="A game i made by following a course."
+      />
       <Board squares={board} handleClick={handleClick} />
       <p>
         {winner ? "Winner: " + winner : "Next Player: " + (xIsNext ? "X" : "O")}
       </p>
       <button onClick={startGame}>Start Game</button>
-    </div>
+    </animated.div>
   );
 }
 export default TicTacToe;
